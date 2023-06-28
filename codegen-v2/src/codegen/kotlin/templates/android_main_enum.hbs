@@ -1,0 +1,37 @@
+package com.trustwallet.core
+
+actual enum class {{enum_name}}(
+    @get:JvmName("value")
+    val value: {{value_type}},
+    {{#if add_string_value}}
+    actual val stringValue: String,
+    {{/if}}
+) {
+    {{#each variants}}
+    {{name}}({{value}}{{#if ../add_string_value}}, "{{as_string}}"{{/if}}),
+    {{/each}}
+    ;
+
+    {{! Methods }}
+    {{#each methods}}
+    {{#if is_static}}
+    @JvmStatic
+    {{/if}}
+    @JvmName("{{name}}")
+    actual external fun {{name}}({{#each params}}{{name}}: {{type}}{{#if is_nullable}}?{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): {{return.type}}{{#if return.is_nullable}}?{{/if}}
+
+    {{/each}}
+    {{! Properties }}
+    {{#each properties}}
+    actual val {{name}}: {{return.type}}{{#if return.is_nullable}}?{{/if}}
+        @JvmName("{{name}}")
+        external get
+
+    {{/each}}
+    companion object {
+        @JvmStatic
+        @JvmName("createFromValue")
+        fun fromValue(value: {{value_type}}): {{enum_name}}? =
+            values().firstOrNull { it.value == value }
+    }
+}

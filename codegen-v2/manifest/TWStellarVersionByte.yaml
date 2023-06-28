@@ -13,3 +13,5 @@ enums:
     value: 0xc8
   - name: sha256Hash
     value: 0x118
+  comments:
+  - Stellar address version byte.

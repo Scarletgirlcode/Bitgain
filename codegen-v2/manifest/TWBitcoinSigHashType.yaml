@@ -17,6 +17,8 @@ enums:
     value: 0x4f40
   - name: anyoneCanPay
     value: 0x80
+  comments:
+  - Bitcoin SIGHASH type.
 functions:
 - name: TWBitcoinSigHashTypeIsSingle
   is_public: true
@@ -26,14 +28,14 @@ functions:
     type:
       variant: enum
       value: TWBitcoinSigHashType
-      is_constant: false
       is_nullable: false
-      is_pointer: false
   return_type:
     variant: bool
-    is_constant: false
     is_nullable: false
-    is_pointer: false
+  comments:
+  - Determines if the given sig hash is single
+  - \param type sig hash type
+  - \return true if the sigh hash type is single, false otherwise
 - name: TWBitcoinSigHashTypeIsNone
   is_public: true
   is_static: false
@@ -42,11 +44,11 @@ functions:
     type:
       variant: enum
       value: TWBitcoinSigHashType
-      is_constant: false
       is_nullable: false
-      is_pointer: false
   return_type:
     variant: bool
-    is_constant: false
     is_nullable: false
-    is_pointer: false
+  comments:
+  - Determines if the given sig hash is none
+  - \param type sig hash type
+  - \return true if the sigh hash type is none, false otherwise

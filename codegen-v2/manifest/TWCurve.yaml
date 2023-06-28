@@ -26,3 +26,5 @@ enums:
   - name: starkex
     value: 6
     as_string: starkex
+  comments:
+  - Elliptic cruves

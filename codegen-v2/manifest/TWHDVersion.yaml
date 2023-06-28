@@ -5,48 +5,55 @@ enums:
   value_type:
     variant: u_int32_t
   variants:
-  - name: none
+  - name: None
     value: 0
-  - name: xpub
+  - name: XPUB
     value: 0x0488b21e
-  - name: xprv
+  - name: XPRV
     value: 0x0488ade4
-  - name: ypub
+  - name: YPUB
     value: 0x049d7cb2
-  - name: yprv
+  - name: YPRV
     value: 0x049d7878
-  - name: zpub
+  - name: ZPUB
     value: 0x04b24746
-  - name: zprv
+  - name: ZPRV
     value: 0x04b2430c
-  - name: ltub
+  - name: LTUB
     value: 0x019da462
-  - name: ltpv
+  - name: LTPV
     value: 0x019d9cfe
-  - name: mtub
+  - name: MTUB
     value: 0x01b26ef6
-  - name: mtpv
+  - name: MTPV
     value: 0x01b26792
-  - name: dpub
+  - name: DPUB
     value: 0x2fda926
-  - name: dprv
+  - name: DPRV
     value: 0x2fda4e8
-  - name: dgub
+  - name: DGUB
     value: 0x02facafd
-  - name: dgpv
+  - name: DGPV
     value: 0x02fac398
+  comments:
+  - Registered HD version bytes
+  - \see https://github.com/satoshilabs/slips/blob/master/slip-0132.md
 properties:
 - name: TWHDVersionIsPublic
   is_public: true
   return_type:
     variant: bool
-    is_constant: false
     is_nullable: false
-    is_pointer: false
+  comments:
+  - Determine if the HD Version is public
+  - \param version HD version
+  - \return true if the version is public, false otherwise
 - name: TWHDVersionIsPrivate
   is_public: true
   return_type:
     variant: bool
-    is_constant: false
     is_nullable: false
-    is_pointer: false
+  comments:
+  - Determine if the HD Version is private
+  - \param version HD version
+  - \return true if the version is private, false otherwise

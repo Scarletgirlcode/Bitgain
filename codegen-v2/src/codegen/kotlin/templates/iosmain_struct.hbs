@@ -1,0 +1,32 @@
+package com.trustwallet.core
+
+{{#if is_class}}
+import cnames.structs.TW{{struct_name}}
+import kotlinx.cinterop.CPointer
+
+actual class {{struct_name}} constructor(
+    val pointer: CPointer<TWAccount>,
+) {
+{{else}}
+actual object {{struct_name}} {
+{{/if}}
+    {{! Inites}}
+    {{#each inits}}
+    actual constructor({{#each params}}{{name}}: {{type}}{{#if is_nullable}}?{{/if}}{{#unless @last}}, {{/unless}}{{/each}}) : this(
+        {{c_ffi_name}}({{#each param_pass}}{{this}}{{#unless @last}}, {{/unless}}{{/each}})!!
+    )
+
+    {{/each}}
+    {{! Methods}}
+    {{#each methods}}
+    actual fun {{name}}({{#each params}}{{name}}: {{type}}{{#if is_nullable}}?{{/if}}{{#unless @last}}, {{/unless}}{{/each}}): {{return.value}}{{#if is_nullable}}?{{/if}} =
+        {{call}}!!
+
+    {{/each}}
+    {{! Properties}}
+    {{#each properties}}
+    actual val {{name}}: {{return.type}}{{#if return.is_nullable}}?{{/if}}
+        get() = {{call}}!!
+
+    {{/each}}
+}

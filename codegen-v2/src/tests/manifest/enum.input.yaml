@@ -1,0 +1,13 @@
+name: Enum
+enums:
+- name: MainEnum
+  is_public: true
+  value_type:
+    variant: u_int32_t
+  variants:
+  - name: one 
+    value: 0
+  - name: two 
+    value: 1
+  - name: three
+    value: 2
