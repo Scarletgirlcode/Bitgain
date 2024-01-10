@@ -2,9 +2,9 @@ package com.trust.walletcore.example
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.protobuf.ByteString
-import kotlinx.android.synthetic.main.activity_main.*
 import wallet.core.jni.CoinType
 import wallet.core.jni.HDWallet
 import wallet.core.java.AnySigner
@@ -134,8 +134,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLog(log: String) {
-        val tv =  TextView(this)
+        val tv = TextView(this)
         tv.text = log
+        val logView = findViewById<LinearLayout>(R.id.logView)
         logView.addView(tv)
         println(log)
     }

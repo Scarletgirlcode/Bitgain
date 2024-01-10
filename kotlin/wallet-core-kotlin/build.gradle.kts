@@ -10,9 +10,13 @@ plugins {
 }
 
 kotlin {
-    targetHierarchy.default()
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+    applyDefaultHierarchyTemplate()
 
-    android {
+    androidTarget {
         publishLibraryVariants = listOf("release")
     }
 
@@ -44,6 +48,7 @@ kotlin {
         all {
             languageSettings {
                 optIn("kotlin.js.ExperimentalJsExport")
+                optIn("kotlinx.cinterop.ExperimentalForeignApi")
             }
         }
 
@@ -94,6 +99,7 @@ kotlin {
                 packageName = "com.trustwallet.core"
                 headers(rootDir.parentFile.resolve("include/TrustWalletCore").listFiles()!!)
             }
+            main.compilerOptions.options.freeCompilerArgs.add("-opt-in=kotlinx.cinterop.ExperimentalForeignApi")
         }
     }
 }
