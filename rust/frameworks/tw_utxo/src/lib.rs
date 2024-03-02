@@ -1,6 +1,20 @@
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+
 use tw_proto::Utxo::Proto;
 
+pub mod address;
 pub mod compiler;
+pub mod encode;
+pub mod error;
+pub mod planner;
+pub mod script;
+pub mod sighash;
+pub mod sighash_computer;
+pub mod signing_mode;
+pub mod transaction;
+pub mod utxo_selector;
 
 pub type Result<T> = std::result::Result<T, Error>;
 

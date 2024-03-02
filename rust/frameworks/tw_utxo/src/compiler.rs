@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+
 use crate::{Error, Result};
 use bitcoin::blockdata::locktime::absolute::{Height, LockTime, Time};
 use bitcoin::consensus::Encodable;
@@ -262,6 +266,8 @@ impl Compiler<StandardBitcoinContext> {
                         ))
                     };
 
+                    dbg!(&leaf_hash);
+
                     // Note that `input.sighash_type = 0` is handled by the underlying library.
                     let sighash_type = TapSighashType::from_consensus_u8(input.sighash_type as u8)
                         .map_err(|_| Error::from(Proto::Error::Error_invalid_sighash_type))?;
@@ -282,6 +288,8 @@ impl Compiler<StandardBitcoinContext> {
                         leaf_hash,
                         sighash_type,
                     )?;
+
+                    dbg!(sighash.to_byte_array());
 
                     sighashes.push((
                         sighash.as_byte_array().to_vec(),

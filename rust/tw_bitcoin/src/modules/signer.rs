@@ -2,6 +2,7 @@ use crate::{BitcoinEntry, Error, Result};
 use bitcoin::key::{TapTweak, TweakedKeyPair};
 use bitcoin::sighash::{EcdsaSighashType, TapSighashType};
 use secp256k1::{KeyPair, Message, Secp256k1};
+use tw_utxo::sighash;
 use std::collections::HashMap;
 use tw_coin_entry::coin_context::CoinContext;
 use tw_coin_entry::coin_entry::{PrivateKeyBytes, SignatureBytes};
@@ -185,6 +186,8 @@ impl Signer {
                         let tapped: TweakedKeyPair = keypair.tap_tweak(&secp, None);
                         let tweaked = KeyPair::from(tapped);
 
+                        dbg!(&entry.sighash);
+
                         // Construct the Schnorr signature.
                         let schnorr = if dangerous_use_fixed_schnorr_rng {
                             // For tests, we disable the included randomness in order to create
@@ -194,6 +197,8 @@ impl Signer {
                         } else {
                             secp.sign_schnorr(&sighash, &tweaked)
                         };
+
+                        dbg!(&schnorr.as_ref());
 
                         let sig = bitcoin::taproot::Signature {
                             sig: schnorr,
