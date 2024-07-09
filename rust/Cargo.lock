@@ -1742,6 +1742,7 @@ dependencies = [
  "tw_misc",
  "tw_native_evmos",
  "tw_native_injective",
+ "tw_polkadot",
  "tw_ronin",
  "tw_solana",
  "tw_sui",
@@ -1958,6 +1959,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "tw_polkadot"
+version = "0.1.0"
+dependencies = [
+ "lazy_static",
+ "tw_coin_entry",
+ "tw_encoding",
+ "tw_hash",
+ "tw_keypair",
+ "tw_memory",
+ "tw_number",
+ "tw_proto",
+ "tw_ss58_address",
+]
+
+[[package]]
 name = "tw_proto"
 version = "0.1.0"
 dependencies = [
@@ -1994,6 +2010,18 @@ dependencies = [
  "tw_keypair",
  "tw_memory",
  "tw_proto",
+]
+
+[[package]]
+name = "tw_ss58_address"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "tw_coin_entry",
+ "tw_encoding",
+ "tw_hash",
+ "tw_keypair",
+ "tw_memory",
 ]
 
 [[package]]
